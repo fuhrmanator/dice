@@ -9,6 +9,7 @@ import MoreIcon from "@mui/icons-material/MoreHorizRounded";
 
 import { DieBonus } from "./DieBonus";
 import { DieAdvantage } from "./DieAdvantage";
+import { RollSpecifier } from "./RollSpecifier";
 import { useDiceControlsStore } from "./store";
 import { useDiceRollStore } from "../dice/store";
 
@@ -17,6 +18,8 @@ export function DiceExtras() {
   const setBonus = useDiceControlsStore((state) => state.setDiceBonus);
   const advantage = useDiceControlsStore((state) => state.diceAdvantage);
   const setAdvantage = useDiceControlsStore((state) => state.setDiceAdvantage);
+  const specifier = useDiceControlsStore((state) => state.rollSpecifier);
+  const setSpecifierString = useDiceControlsStore((state) => state.setRollSpecifier);
 
   const clearRoll = useDiceRollStore((state) => state.clearRoll);
   const roll = useDiceRollStore((state) => state.roll);
@@ -82,6 +85,14 @@ export function DiceExtras() {
               clearRollIfNeeded();
             }}
           />
+          <RollSpecifier
+            specifier={specifier}
+            onChange={(specifier) => {
+              setSpecifierString(specifier);
+              clearRollIfNeeded();
+            }}
+          />
+
           <Divider variant="middle" />
           <DieAdvantage
             advantage={advantage}

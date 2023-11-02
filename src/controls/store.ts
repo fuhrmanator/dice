@@ -17,6 +17,7 @@ interface DiceControlsState {
   diceBonus: number;
   diceAdvantage: Advantage;
   diceHidden: boolean;
+  rollSpecifier: string;
   diceRollPressTime: number | null;
   changeDiceSet: (diceSet: DiceSet) => void;
   resetDiceCounts: () => void;
@@ -26,6 +27,7 @@ interface DiceControlsState {
   setDiceAdvantage: (advantage: Advantage) => void;
   setDiceBonus: (bonus: number) => void;
   toggleDiceHidden: () => void;
+  setRollSpecifier: (specifier: string) => void;
   setDiceRollPressTime: (time: number | null) => void;
 }
 
@@ -42,6 +44,7 @@ export const useDiceControlsStore = create<DiceControlsState>()(
     diceBonus: 0,
     diceAdvantage: null,
     diceHidden: false,
+    rollSpecifier: "3d6-2",
     diceRollPressTime: null,
     changeDiceSet(diceSet) {
       set((state) => {
@@ -65,11 +68,13 @@ export const useDiceControlsStore = create<DiceControlsState>()(
       });
     },
     resetDiceCounts() {
+      console.log("resetDiceCounts");
       set((state) => {
         state.diceCounts = state.defaultDiceCounts;
       });
     },
     changeDieCount(id, count) {
+      console.log("changeDieCount", id, count);
       set((state) => {
         if (id in state.diceCounts) {
           state.diceCounts[id] = count;
@@ -77,13 +82,18 @@ export const useDiceControlsStore = create<DiceControlsState>()(
       });
     },
     incrementDieCount(id) {
+      console.log("incrementDieCount", id);
       set((state) => {
         if (id in state.diceCounts) {
           state.diceCounts[id] += 1;
+        } else {
+          console.log("incrementDieCount: id not found", id);
+          console.log("state.diceCounts", state.diceCounts);
         }
       });
     },
     decrementDieCount(id) {
+      console.log("decrementDieCount", id);
       set((state) => {
         if (id in state.diceCounts) {
           state.diceCounts[id] -= 1;
@@ -91,21 +101,53 @@ export const useDiceControlsStore = create<DiceControlsState>()(
       });
     },
     setDiceBonus(bonus) {
+      console.log("setDiceBonus", bonus);
       set((state) => {
         state.diceBonus = bonus;
       });
     },
     setDiceAdvantage(advantage) {
+      console.log("setDiceAdvantage", advantage);
       set((state) => {
         state.diceAdvantage = advantage;
       });
     },
     toggleDiceHidden() {
+      console.log("toggleDiceHidden");
       set((state) => {
         state.diceHidden = !state.diceHidden;
       });
     },
+    setRollSpecifier(specifier) {
+      console.log("setRollSpecifier", specifier);
+      set((state) => {
+        state.rollSpecifier = specifier;
+      });
+    },
+    // specifyRoll(specifier) {
+    //   console.log("specifyRoll", specifier);
+    //   set((state) => {
+    //     // TODO: Validate specifier
+    //     // add a 3d6 with a -2 bonus
+    //     console.log("store: specifyRoll", specifier);
+    //     if (state.roll) state.clearRoll();
+
+    //     state.changeDiceSet(diceSets[0]);
+    //     // find a die in diceSet that matches the specifier (number of sides is 6)  
+    //     for (const die of state.diceSet.dice) {
+    //       if (die.type === "D6") {
+    //         state.incrementDieCount(die.id);
+    //         state.incrementDieCount(die.id);
+    //         state.incrementDieCount(die.id);
+    //         break;
+    //       }
+    //     }
+    //     // state.changeDieCount("D6", 3);
+    //     state.setDiceBonus(-2);
+    //   });
+    // },
     setDiceRollPressTime(time) {
+      console.log("setDiceRollPressTime", time);
       set((state) => {
         state.diceRollPressTime = time;
       });

@@ -56,6 +56,7 @@ export const useDiceRollStore = create<DiceRollState>()(
       }),
     clearRoll: () =>
       set((state) => {
+        console.log("clearing roll");
         state.roll = null;
         state.rollValues = {};
         state.rollTransforms = {};

@@ -43,7 +43,9 @@ export function DicePicker() {
             key={id}
           >
             <IconButton
-              onClick={() => {
+              id={die.id}
+              onClick={(e) => {
+                console.log("onClick: ", e.currentTarget.id);
                 handleDiceCountIncrease(id);
                 clearRollIfNeeded();
               }}
