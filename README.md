@@ -1,9 +1,12 @@
 # Owlbear Rodeo Dice
 
-> ## Textual Roll Specifier
+> ## Quick (Textual) Roll Specifier
 
 > This version supports entering a string like **3d6-2** and it chooses 3 six-sided dice and sets the modifier to `-2`. 
-
+> ![Textual roll specifier](image.png)
+>
+> It uses `peggy` to parse the specifier, according to a grammar in the `RollSpecifier.tsx` file. https://github.com/fuhrmanator/dice/blob/cf9c5073140c248f836af2946746b8a60c633cf6/src/controls/RollSpecifier.tsx#L21-L57
+ 
 Beautiful 3D dice extension for d20 based systems
 
 ![Example](/docs/header.jpg)
