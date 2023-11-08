@@ -1,5 +1,9 @@
 # Owlbear Rodeo Dice
 
+> ## Textual Roll Specifier
+
+> This version supports entering a string like **3d6-2** and it chooses 3 six-sided dice and sets the modifier to `-2`. 
+
 Beautiful 3D dice extension for d20 based systems
 
 ![Example](/docs/header.jpg)
