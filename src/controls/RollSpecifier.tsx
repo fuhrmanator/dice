@@ -89,6 +89,8 @@ export function RollSpecifier({
         </ListItemIcon>
         <ListItemText sx={{ marginRight: "88px" }}>
           <Input
+            // don't let the input cause focus to move outside the Input if key matching an upper level control is pressed
+            onKeyDown={(e) => e.stopPropagation()}
             disableUnderline
             inputProps={{
               sx: {
