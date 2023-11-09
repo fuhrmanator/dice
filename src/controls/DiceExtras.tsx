@@ -70,6 +70,16 @@ export function DiceExtras() {
         }}
       >
         <Stack>
+        <RollSpecifier
+            closeMenu={handleClose}
+            specifier={specifier}
+            onChange={(specifier) => {
+              setSpecifierString(specifier);
+              clearRollIfNeeded();
+            }}
+          />
+
+          <Divider variant="middle" />
           <DieBonus
             bonus={bonus}
             onChange={(bonus) => {
@@ -82,13 +92,6 @@ export function DiceExtras() {
             }}
             onDecrease={() => {
               setBonus(bonus - 1);
-              clearRollIfNeeded();
-            }}
-          />
-          <RollSpecifier
-            specifier={specifier}
-            onChange={(specifier) => {
-              setSpecifierString(specifier);
               clearRollIfNeeded();
             }}
           />

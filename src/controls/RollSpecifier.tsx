@@ -14,6 +14,7 @@ import * as peggy from "peggy";
 
 type RollSpecifierProps = {
   specifier: string;
+  closeMenu: () => void;
   onChange: (specifier: string) => void;
 };
 
@@ -61,6 +62,7 @@ const parser = peggy.generate(diceRollGrammar);
 
 export function RollSpecifier({
   specifier,
+  closeMenu,
   onChange,
 }: RollSpecifierProps) {
   const [specifierString, setSpecifierString] = useState(`${specifier}`);
@@ -121,6 +123,7 @@ export function RollSpecifier({
                   incrementDieCount(`GALAXY_STANDARD_D${rollSpec.sides}`);
                 }
                 setBonus(rollSpec.modifier);
+                closeMenu();
               }}
             >
               <InputOutlined />

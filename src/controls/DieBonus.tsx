@@ -39,6 +39,8 @@ export function DieBonus({
         </ListItemIcon>
         <ListItemText sx={{ marginRight: "88px" }}>
           <Input
+            // don't let the input cause focus to move to the menu if "+" is pressed
+            onKeyDown={(e) => e.stopPropagation()}
             disableUnderline
             inputProps={{
               sx: {
